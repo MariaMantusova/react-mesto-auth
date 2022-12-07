@@ -18,6 +18,7 @@ function App() {
     const [selectedCard, setSelectedCard] = React.useState(null);
     const [currentUser, setCurrentUser] = React.useState({});
     const [cards, setCards] = React.useState([]);
+    const [authorized, setAuthorized] = React.useState(false);
 
     React.useEffect(() => {
         api.getUserInfo()
@@ -144,7 +145,19 @@ function App() {
         <BrowserRouter>
             <CurrentUserContext.Provider value={currentUser}>
                 <div className="page">
-                    <Header/>
+                    <Header>
+                        <Switch>
+                            <Route exact path="/">
+                                {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
+                            </Route>
+                            {/*<Route exact path="/sign-in">*/}
+                            {/*    <Sign-in/>*/}
+                            {/*</Route>*/}
+                            {/*<Route path="/sign-up">*/}
+                            {/*    <Sign-up/>*/}
+                            {/*</Route>*/}
+                        </Switch>
+                    </Header>
                     <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
                           onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
                           onLike={handleCardLike} onDelete={handleCardDelete}/>
