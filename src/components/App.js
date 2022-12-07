@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -140,27 +141,30 @@ function App() {
     }
 
     return (
-        <CurrentUserContext.Provider value={currentUser}>
-            <div className="page">
-                <Header/>
-                <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
-                      onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
-                      onLike={handleCardLike} onDelete={handleCardDelete}/>
-                <Footer/>
+        <BrowserRouter>
+            <CurrentUserContext.Provider value={currentUser}>
+                <div className="page">
+                    <Header/>
+                    <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
+                          onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
+                          onLike={handleCardLike} onDelete={handleCardDelete}/>
+                    <Footer/>
 
-                <ImagePopup card={selectedCard} onclose={closeAllPopups}/>
+                    <ImagePopup card={selectedCard} onclose={closeAllPopups}/>
 
-                <PopupWithForm name="confirm" title="Вы уверены?" buttonText="Да"/>
+                    <PopupWithForm name="confirm" title="Вы уверены?" buttonText="Да"/>
 
-                <EditProfilePopup onClose={closeAllPopups} isOpen={isEditProfilePopupOpen}
-                                  onUpdateUser={handleUpdateUser}/>
+                    <EditProfilePopup onClose={closeAllPopups} isOpen={isEditProfilePopupOpen}
+                                      onUpdateUser={handleUpdateUser}/>
 
-                <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
-                                 onUpdateAvatar={handleUpdateAvatar}/>
+                    <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
+                                     onUpdateAvatar={handleUpdateAvatar}/>
 
-                <AddCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddCard={handleAddCardSubmit} />
-            </div>
-        </CurrentUserContext.Provider>
+                    <AddCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
+                                  onAddCard={handleAddCardSubmit}/>
+                </div>
+            </CurrentUserContext.Provider>
+        </BrowserRouter>
     )
 
 }
