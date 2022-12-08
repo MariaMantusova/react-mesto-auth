@@ -10,6 +10,7 @@ import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddCardPopup from "./AddCardPopup";
+import Login from "./Login";
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -145,22 +146,20 @@ function App() {
         <BrowserRouter>
             <CurrentUserContext.Provider value={currentUser}>
                 <div className="page">
-                    <Header>
-                        <Switch>
-                            <Route exact path="/">
-                                {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
-                            </Route>
-                            {/*<Route exact path="/sign-in">*/}
-                            {/*    <Sign-in/>*/}
-                            {/*</Route>*/}
-                            {/*<Route path="/sign-up">*/}
-                            {/*    <Sign-up/>*/}
-                            {/*</Route>*/}
-                        </Switch>
-                    </Header>
-                    <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
-                          onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
-                          onLike={handleCardLike} onDelete={handleCardDelete}/>
+                    <Switch>
+                        <Route exact path="/">
+                            {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
+                        </Route>
+                        <Route path="/main">
+                            <Header />
+                            <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
+                                  onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
+                                  onLike={handleCardLike} onDelete={handleCardDelete}/>
+                        </Route>
+                        <Route path="/sign-in">
+                            <Login />
+                        </Route>
+                    </Switch>
                     <Footer/>
 
                     <ImagePopup card={selectedCard} onclose={closeAllPopups}/>
