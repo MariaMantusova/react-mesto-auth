@@ -155,12 +155,12 @@ function App() {
                             <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
                                   onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
                                   onLike={handleCardLike} onDelete={handleCardDelete}/>
+                            <Footer/>
                         </Route>
                         <Route path="/sign-in">
                             <Login />
                         </Route>
                     </Switch>
-                    <Footer/>
 
                     <ImagePopup card={selectedCard} onclose={closeAllPopups}/>
 

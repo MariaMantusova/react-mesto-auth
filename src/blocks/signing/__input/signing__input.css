@@ -1,0 +1,13 @@
+.signing__input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    width: 360px;
+    margin-top: 30px;
+    padding-bottom: 13px;
+}
+
+::placeholder {
+    color: #CCCCCC;
+    opacity: 1;
+}
