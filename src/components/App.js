@@ -11,6 +11,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddCardPopup from "./AddCardPopup";
 import Login from "./Login";
+import Register from "./Register";
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -161,6 +162,9 @@ function App() {
                         </Route>
                         <Route path="/sign-in">
                             <Login />
+                        </Route>
+                        <Route path="/sign-up">
+                            <Register />
                         </Route>
                     </Switch>
 
