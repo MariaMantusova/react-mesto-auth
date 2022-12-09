@@ -151,7 +151,9 @@ function App() {
                             {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
                         </Route>
                         <Route path="/main">
-                            <Header link="Выйти" nameClass="header__registration-link_main" />
+                            <Header link="Выйти" nameClass="header__registration-link_main">
+                                <a className="header__registration-link header__registration-link_email">jdd</a>
+                            </Header>
                             <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
                                   onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
                                   onLike={handleCardLike} onDelete={handleCardDelete}/>
