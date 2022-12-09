@@ -5,7 +5,6 @@
 @import url(./blocks/header/__link/header__link.css);
 @import url(./blocks/header/__registration-link/header__registration-link.css);
 @import url(./blocks/header/__registration-link/_main/header__registration-link_main.css);
-@import url(./blocks/header/__registration-link/_email/header__registration-link_email.css);
 @import url(./blocks/header/__links-container/header__links-container.css);
 @import url(./blocks/header/__logo/header__logo.css);
 @import url(./blocks/profile/profile.css);

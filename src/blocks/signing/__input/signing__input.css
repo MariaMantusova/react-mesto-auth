@@ -2,7 +2,8 @@
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #CCCCCC;
-    width: 360px;
+    max-width: 360px;
+    width: 100%;
     margin-top: 30px;
     padding-bottom: 5px;
 }
@@ -10,4 +11,6 @@
 ::placeholder {
     color: #CCCCCC;
     opacity: 1;
+    font-size: 14px;
+    line-height: 1.2;
 }
