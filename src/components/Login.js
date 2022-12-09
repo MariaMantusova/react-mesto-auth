@@ -5,7 +5,7 @@ import SigningForm from "./SigningForm";
 function Login() {
     return (
         <>
-            <Header link="Регистрция" path="/sign-in"/>
+            <Header link="Регистрация"/>
             <SigningForm title="Вход" buutonText="Войти"/>
         </>
     )

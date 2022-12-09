@@ -8,9 +8,9 @@ function Header(props) {
                 <img src={logoImage} alt="Логотип сайта" className="header__logo"/>
             </a>
             {props.children}
-            <Link href="#" className="header__link" to={props.path}>
-                <h2 className="header__registration-link">{`${props.link}`}</h2>
-            </Link>
+            <a href="#" className="header__link">
+                <h2 className={`header__registration-link ${props.nameClass}`}>{`${props.link}`}</h2>
+            </a>
         </header>
     )
 }
