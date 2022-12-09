@@ -7,7 +7,7 @@ function Register() {
         <>
             <Header link="Войти"/>
             <SigningForm title="Регистрация" buutonText="Зарегистрироваться">
-                <a className="signing__link">Уже зарегистрированы? Войти</a>
+                <a className="signing__link signing__link_registration">Уже зарегистрированы? Войти</a>
             </SigningForm>
         </>
     )

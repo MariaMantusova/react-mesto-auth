@@ -51,6 +51,7 @@
 @import url(./blocks/signing/__input/signing__input.css);
 @import url(./blocks/signing/__button/signing__button.css);
 @import url(./blocks/signing/__link/signing__link.css);
+@import url(./blocks/signing/__link/_registration/signing__link_registration.css);
 @import url(./blocks/info-tooltip/info-tooltip.css);
 @import url(./blocks/info-tooltip/__image/info-tooltip__image.css);
 @import url(./blocks/info-tooltip/__image/_success/info-tooltip__image_success.css);
