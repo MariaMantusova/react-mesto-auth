@@ -7,3 +7,11 @@
     text-align: center;
     margin: 32px auto 0;
 }
+
+@media screen and (max-width: 800px) {
+    .info-tooltip__caption {
+        max-width: 244px;
+        font-size: 20px;
+        margin-top: 40px;
+    }
+}

@@ -165,7 +165,8 @@ function App() {
                             <Login />
                         </Route>
                         <Route path="/sign-up">
-                            <Register />
+                            {/*<Register />*/}
+                            <InfoTooltip caption="Что-то пошло не так! Попробуйте ещё раз." />
                         </Route>
                     </Switch>
 
