@@ -1,0 +1,14 @@
+.burger-links {
+    display: none;
+}
+
+@media screen and (max-width: 650px) {
+    .burger-links {
+        display: flex;
+        list-style: none;
+        flex-direction: column;
+        row-gap: 18px;
+        padding: 0;
+        margin: 0;
+    }
+}
