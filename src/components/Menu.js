@@ -5,8 +5,8 @@ function Menu(props) {
     return (
         <>
             {props.opened && <ul className="burger-links">
-                <li className="burger__email">email</li>
-                <li className="burger__link">
+                <li className="burger__email" onClick={props.closeMenu}>email</li>
+                <li className="burger__link" onClick={props.closeMenu}>
                     <Link className="burger__link">
                         Выйти
                     </Link>

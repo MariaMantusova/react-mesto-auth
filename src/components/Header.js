@@ -9,9 +9,11 @@ function Header(props) {
     const burger = <BiMenu onClick={() => { setOpen(!open) }} className="burger"/>
     const closeBurger = <MdClose onClick={() => { setOpen(!open) }} className="burger"/>
 
+    const closeMenu = () => {setOpen(false)}
+
     return (
         <>
-            <Menu opened={open} />
+            <Menu opened={open} closeMenu={closeMenu} />
             <header className="header">
                 <a href="#" className="header__link">
                     <img src={logoImage} alt="Логотип сайта" className="header__logo"/>
