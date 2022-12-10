@@ -3,10 +3,17 @@
     font-size: 18px;
     line-height: 1.2;
     margin: 0;
+    opacity: 1;
+    transition: opacity 0.3s linear;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 650px) {
     .header__registration-link {
         font-size: 14px;
     }
+}
+
+.header__registration-link:hover {
+    opacity: 0.6;
 }

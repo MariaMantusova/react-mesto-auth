@@ -8,5 +8,11 @@
         width: 24px;
         height: 24px;
         cursor: pointer;
+        opacity: 1;
+        transition: opacity 0.3s linear;
     }
+}
+
+.burger:hover {
+    opacity: 0.6;
 }
