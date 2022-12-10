@@ -1,5 +1,7 @@
 .burger-links {
     display: none;
+    max-width: 320px;
+    width: 100%;
 }
 
 @media screen and (max-width: 650px) {
@@ -7,8 +9,10 @@
         display: flex;
         list-style: none;
         flex-direction: column;
+        align-items: center;
         row-gap: 18px;
-        padding: 0;
-        margin: 0;
+        padding: 40px 0;
+        margin: 0 auto;
+        border-bottom: 1px solid rgba(84, 84, 84, .7);
     }
 }
