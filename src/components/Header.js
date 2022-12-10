@@ -1,11 +1,13 @@
 import logoImage from "../images/header-logo.svg";
-import {Link} from "react-router-dom";
 import Menu from "./Menu";
-import {BiMenu} from "react-icons/bi"
+import {BiMenu} from "react-icons/bi";
 import React from "react";
+import {MdClose} from "react-icons/md";
 
 function Header(props) {
     const [open, setOpen] = React.useState(false);
+    const burger = <BiMenu onClick={() => { setOpen(!open) }} className="burger"/>
+    const closeBurger = <MdClose onClick={() => { setOpen(!open) }} className="burger"/>
 
     return (
         <>
@@ -20,9 +22,7 @@ function Header(props) {
                         <h2 className={`header__registration-link ${props.nameClass}`}>{`${props.link}`}</h2>
                     </a>
                 </div>
-                <BiMenu onClick={() => {
-                    setOpen(!open)
-                }} className="burger"/>
+                {open ? closeBurger : burger}
             </header>
         </>
     )
