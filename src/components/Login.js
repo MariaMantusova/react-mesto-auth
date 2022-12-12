@@ -2,7 +2,6 @@ import React from "react";
 import Header from "./Header";
 
 function Login() {
-
     const [data, setData] = React.useState({
         email: "",
         password: ""

@@ -27,14 +27,12 @@ function Register() {
             .then((res) => {
                 if (res.statusCode !== 400) {
                     setData({
-                        ...data,
-                        message: ''
+                        ...data
                     });
                     history.push("/sign-in")
                 } else {
                     setData({
-                        ...data,
-                        message: 'Что-то пошло не так!'
+                        ...data
                     })
                 }
             })
