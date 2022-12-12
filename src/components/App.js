@@ -149,8 +149,11 @@ function App() {
             <CurrentUserContext.Provider value={currentUser}>
                 <div className="page">
                     <Switch>
-                        <Route exact path="/">
-                            {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
+                        <Route path="/sign-in">
+                            <Login />
+                        </Route>
+                        <Route path="/sign-up">
+                            <Register />
                         </Route>
                         <Route path="/main">
                             <Header link="Выйти" nameClass="header__registration-link_main">
@@ -161,11 +164,8 @@ function App() {
                                   onLike={handleCardLike} onDelete={handleCardDelete}/>
                             <Footer/>
                         </Route>
-                        <Route path="/sign-in">
-                            <Login />
-                        </Route>
-                        <Route path="/sign-up">
-                            <Register />
+                        <Route exact path="/">
+                            {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
                         </Route>
                     </Switch>
 

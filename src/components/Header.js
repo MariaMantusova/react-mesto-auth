@@ -2,6 +2,7 @@ import logoImage from "../images/header-logo.svg";
 import Menu from "./Menu";
 import {BiMenu} from "react-icons/bi";
 import React from "react";
+import {Link} from "react-router-dom";
 import {MdClose} from "react-icons/md";
 
 function Header(props) {
@@ -18,12 +19,12 @@ function Header(props) {
                 <a href="#" className="header__link">
                     <img src={logoImage} alt="Логотип сайта" className="header__logo"/>
                 </a>
-                <div className="header__links-container">
+                <nav className="header__links-container">
                     {props.children}
-                    <a href="#" className="header__link">
+                    <Link to={props.path} className="header__link">
                         <h2 className={`header__registration-link ${props.nameClass}`}>{`${props.link}`}</h2>
-                    </a>
-                </div>
+                    </Link>
+                </nav>
                 {open ? closeBurger : burger}
             </header>
         </>

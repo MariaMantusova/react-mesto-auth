@@ -7,7 +7,7 @@ function SigningForm(props) {
             <form className="signing__form">
                 <input className="signing__input" type="email" placeholder="Email" required/>
                 <input className="signing__input" type="password" placeholder="Пароль" minLength="8" required/>
-                <button className="signing__button">{`${props.buutonText}`}</button>
+                <button className="signing__button">{`${props.buttonText}`}</button>
             </form>
             {props.children}
         </section>
