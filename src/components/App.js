@@ -1,8 +1,6 @@
 import React from "react";
 import {Route, Switch, Redirect } from 'react-router-dom';
-import Header from "./Header";
 import Main from "./Main";
-import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
 import {api} from "../utils/api";
@@ -12,6 +10,8 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import AddCardPopup from "./AddCardPopup";
 import Login from "./Login";
 import Register from "./Register";
+import ProtectedRoute from "./ProtectedRoute";
+import {authApi} from "../utils/authApi";
 import InfoTooltip from "./InfoTooltip";
 
 function App() {
@@ -154,15 +154,15 @@ function App() {
                     <Route path="/sign-up">
                         <Register/>
                     </Route>
-                    <Route path="/main">
-                        <Header link="Выйти" nameClass="header__registration-link_main" path="/sign-in">
-                            <a className="header__registration-link header__registration-link_email">jdd</a>
-                        </Header>
-                        <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
-                              onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
-                              onLike={handleCardLike} onDelete={handleCardDelete}/>
-                        <Footer/>
-                    </Route>
+                    <ProtectedRoute path="/main" authorized={authorized}
+                                    component={<Main onEditProfile={handleEditProfileClick}
+                                                     onAddPlace={handleAddPlaceClick}
+                                                     onEditAvatar={handleEditAvatarClick}
+                                                     onCardClick={handleCardClick}
+                                                     cards={cards}
+                                                     onLike={handleCardLike}
+                                                     onDelete={handleCardDelete}/>}
+                    />
                     <Route exact path="/">
                         {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
                     </Route>
