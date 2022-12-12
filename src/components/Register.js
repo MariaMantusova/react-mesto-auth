@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {authApi} from "../utils/authApi";
 
 function Register() {
@@ -8,6 +8,8 @@ function Register() {
         email: "",
         password: ""
     });
+
+    const history = useHistory();
 
     function handleChange(evt) {
         const {name, value} = evt.target;
@@ -27,9 +29,8 @@ function Register() {
                     setData({
                         ...data,
                         message: ''
-                    }, () => {
-                        this.props.history.push('/signin')
                     });
+                    history.push("/sign-in")
                 } else {
                     setData({
                         ...data,
