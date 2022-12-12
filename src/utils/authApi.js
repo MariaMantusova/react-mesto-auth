@@ -9,8 +9,8 @@ class AuthApi {
             method: 'POST',
             headers: this._header,
             body: JSON.stringify({
-                password: password,
-                email: email
+                email: email,
+                password: password
             })
         })
             .then((res) => {
@@ -61,9 +61,9 @@ class AuthApi {
 }
 
 const authApiOption = {
-    url: 'https://auth.nomoreparties.co',
+    url: "https://auth.nomoreparties.co",
     headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json" ,
     },
 }
 

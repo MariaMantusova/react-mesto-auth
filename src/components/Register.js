@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import {Link} from "react-router-dom";
+import {authApi} from "../utils/authApi";
 
 function Register() {
     const [data, setData] = React.useState({
@@ -16,8 +17,27 @@ function Register() {
         })
     }
 
-    const handleSubmit = (evt) => {
+    function handleSubmit(evt) {
         evt.preventDefault();
+
+        let {email, password} = data;
+        authApi.registerUser(password, email)
+            .then((res) => {
+                if (res.statusCode !== 400) {
+                    setData({
+                        ...data,
+                        message: ''
+                    }, () => {
+                        this.props.history.push('/signin')
+                    });
+                } else {
+                    setData({
+                        ...data,
+                        message: 'Что-то пошло не так!'
+                    })
+                }
+            })
+
     }
 
     return (
@@ -25,7 +45,7 @@ function Register() {
             <Header link="Войти" path="/sign-in" passwordValue={data.password} emailValue={data.email} changing={handleChange} />
             <section className="signing">
                 <h1 className="signing__title">Регистрация</h1>
-                <form className="signing__form">
+                <form className="signing__form" onSubmit={handleSubmit}>
                     <input className="signing__input" type="email" placeholder="Email" name="email"
                            value={data.email || ""} onChange={handleChange} required/>
                     <input className="signing__input" type="password" name="password" placeholder="Пароль" minLength="8"
