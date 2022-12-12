@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import {Route, Switch, Redirect } from 'react-router-dom';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -145,45 +145,44 @@ function App() {
     }
 
     return (
-        <BrowserRouter>
-            <CurrentUserContext.Provider value={currentUser}>
-                <div className="page">
-                    <Switch>
-                        <Route path="/sign-in">
-                            <Login />
-                        </Route>
-                        <Route path="/sign-up">
-                            <Register />
-                        </Route>
-                        <Route path="/main">
-                            <Header link="Выйти" nameClass="header__registration-link_main">
-                                <a className="header__registration-link header__registration-link_email">jdd</a>
-                            </Header>
-                            <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
-                                  onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
-                                  onLike={handleCardLike} onDelete={handleCardDelete}/>
-                            <Footer/>
-                        </Route>
-                        <Route exact path="/">
-                            {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
-                        </Route>
-                    </Switch>
+        <CurrentUserContext.Provider value={currentUser}>
+            <div className="page">
+                <Switch>
+                    <Route path="/sign-in">
+                        <Login/>
+                    </Route>
+                    <Route path="/sign-up">
+                        <Register/>
+                    </Route>
+                    <Route path="/main">
+                        <Header link="Выйти" nameClass="header__registration-link_main" path="/sign-in">
+                            <a className="header__registration-link header__registration-link_email">jdd</a>
+                        </Header>
+                        <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick}
+                              onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} cards={cards}
+                              onLike={handleCardLike} onDelete={handleCardDelete}/>
+                        <Footer/>
+                    </Route>
+                    <Route exact path="/">
+                        {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
+                    </Route>
+                </Switch>
 
-                    <ImagePopup card={selectedCard} onclose={closeAllPopups}/>
+                <ImagePopup card={selectedCard} onclose={closeAllPopups}/>
 
-                    <PopupWithForm name="confirm" title="Вы уверены?" buttonText="Да"/>
+                <PopupWithForm name="confirm" title="Вы уверены?" buttonText="Да"/>
 
-                    <EditProfilePopup onClose={closeAllPopups} isOpen={isEditProfilePopupOpen}
-                                      onUpdateUser={handleUpdateUser}/>
+                <EditProfilePopup onClose={closeAllPopups} isOpen={isEditProfilePopupOpen}
+                                  onUpdateUser={handleUpdateUser}/>
 
-                    <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
-                                     onUpdateAvatar={handleUpdateAvatar}/>
+                <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}
+                                 onUpdateAvatar={handleUpdateAvatar}/>
 
-                    <AddCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
-                                  onAddCard={handleAddCardSubmit}/>
-                </div>
-            </CurrentUserContext.Provider>
-        </BrowserRouter>
+                <AddCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
+                              onAddCard={handleAddCardSubmit}/>
+            </div>
+        </CurrentUserContext.Provider>
+
     )
 
 }

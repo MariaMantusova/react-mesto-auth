@@ -6,9 +6,9 @@ import {Link} from "react-router-dom";
 function Register() {
     return (
         <>
-            <Header link="Войти" path="sign-in" />
+            <Header link="Войти" path="/sign-in" />
             <SigningForm title="Регистрация" buttonText="Зарегистрироваться">
-                <Link to="sign-in" className="signing__link signing__link_registration">Уже зарегистрированы? Войти</Link>
+                <Link to="/sign-in" className="signing__link signing__link_registration">Уже зарегистрированы? Войти</Link>
             </SigningForm>
         </>
     )
