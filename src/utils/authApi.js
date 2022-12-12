@@ -20,8 +20,8 @@ class AuthApi {
                     return Promise.reject(new Error(res.status.toString()));
                 }
             })
-            .catch((err) => Promise.reject(err));
-    }
+            .catch((err) => console.log(err));
+    };
 
     authorizeUser(password, email) {
         return fetch(`${this._url}/signin`, {
@@ -39,8 +39,8 @@ class AuthApi {
                     return Promise.reject(new Error(res.status.toString()));
                 }
             })
-            .catch((err) => Promise.reject(err));
-    }
+            .catch((err) => console.log(err));
+    };
 
     validityCheck(JWT) {
         return fetch(`${this._url}/users/me`, {
@@ -56,8 +56,8 @@ class AuthApi {
                     return Promise.reject(new Error(res.status.toString()));
                 }
             })
-            .catch((err) => Promise.reject(err));
-    }
+            .catch((err) => console.log(err));
+    };
 }
 
 const authApiOption = {
