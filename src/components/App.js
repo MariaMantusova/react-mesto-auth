@@ -29,22 +29,22 @@ function App() {
     const [classNameInfoTooltip, setClassNameInfoTooltip] = React.useState('');
 
     React.useEffect(() => {
-        api.getUserInfo()
+      authorized && api.getUserInfo()
             .then((user) => {
                 setCurrentUser(user);
             })
             .catch((err) => {
                 console.log(err);
             })
-    }, [])
+    }, [authorized])
 
     React.useEffect(() => {
-        api.getCards()
+        authorized && api.getCards()
             .then((cardList) => {
                 setCards(cardList);
             })
             .catch((err) => console.log(err))
-    }, [])
+    }, [authorized])
 
     function tokenCheck() {
         if (localStorage.getItem('jwt')) {
