@@ -75,6 +75,22 @@ function App() {
             })
     }
 
+    function handleRegister(password, email, setData, data) {
+        authApi.registerUser(password, email)
+            .then((res) => {
+                if (res.statusCode !== 400) {
+                    setData({
+                        ...data
+                    });
+                    infoToolTipSuccessOpen();
+                    history.push("/sign-in");
+                }
+            })
+            .catch((err) => {
+                infoToolTipFailOpen(err)
+            })
+    }
+
     React.useEffect(() => {
         tokenCheck();
     },[])
@@ -211,7 +227,7 @@ function App() {
                         <Login authorize={handleAuthorized} onLogin={handleLogin}/>
                     </Route>
                     <Route path="/sign-up">
-                        <Register onError={infoToolTipFailOpen} onSuccess={infoToolTipSuccessOpen}/>
+                        <Register onRegister={handleRegister}/>
                     </Route>
                     <ProtectedRoute path="/main" authorized={authorized}
                                     component={Main}

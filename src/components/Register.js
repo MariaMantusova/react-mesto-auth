@@ -23,25 +23,7 @@ function Register(props) {
         evt.preventDefault();
 
         let {email, password} = data;
-        authApi.registerUser(password, email)
-            .then((res) => {
-                if (res.statusCode !== 400) {
-                    setData({
-                        ...data
-                    });
-                    props.onSuccess();
-                    history.push("/sign-in");
-                } else {
-                    setData({
-                        ...data
-                    })
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-                props.onError();
-                history.push("/sign-in");
-            })
+        props.onRegister(password, email, setData, data);
     }
 
     return (
