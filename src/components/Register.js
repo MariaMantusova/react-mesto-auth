@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import {Link, useHistory} from "react-router-dom";
 import {authApi} from "../utils/authApi";
+import InfoTooltip from "./InfoTooltip";
 
 function Register() {
     const [data, setData] = React.useState({
@@ -18,6 +19,14 @@ function Register() {
             [name]: value,
         })
     }
+
+    // function openInfo(res) {
+    //     if (res.statusCode.startsWith('2')) {
+    //         <InfoTooltip className="info-tooltip__image_success" caption="Вы успешно зарегистрировались!"/>
+    //     } else {
+    //         <InfoTooltip className="info-tooltip__image_fail" caption="Что-то пошло не так! Попробуйте ещё раз."/>
+    //     }
+    // }
 
     function handleSubmit(evt) {
         evt.preventDefault();
@@ -36,6 +45,10 @@ function Register() {
                     })
                 }
             })
+            .catch((err) => console.log(err))
+            // .finally((res) => {
+            //     openInfo(res)
+            // })
 
     }
 

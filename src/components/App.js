@@ -12,7 +12,6 @@ import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import {authApi} from "../utils/authApi";
-import InfoTooltip from "./InfoTooltip";
 
 function App() {
     const history = useHistory();

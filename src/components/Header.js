@@ -12,6 +12,12 @@ function Header(props) {
 
     const closeMenu = () => {setOpen(false)}
 
+    function logOut() {
+        if (`${props.link}` === "Выйти") {
+            localStorage.removeItem('jwt');
+        }
+    }
+
     return (
         <>
             <Menu opened={open} closeMenu={closeMenu} />
@@ -21,7 +27,7 @@ function Header(props) {
                 </a>
                 <nav className="header__links-container">
                     {props.children}
-                    <Link to={props.path} className="header__link">
+                    <Link to={props.path} className="header__link" onClick={logOut}>
                         <h2 className={`header__registration-link ${props.nameClass}`}>{`${props.link}`}</h2>
                     </Link>
                 </nav>
