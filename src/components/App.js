@@ -47,8 +47,8 @@ function App() {
     }, [authorized])
 
     function tokenCheck() {
-        if (localStorage.getItem('jwt')) {
-            let jwt = localStorage.getItem('jwt');
+        const jwt = localStorage.getItem('jwt');
+        if (jwt) {
             authApi.validityCheck(jwt)
                 .then((res) => {
                     if (res) {
