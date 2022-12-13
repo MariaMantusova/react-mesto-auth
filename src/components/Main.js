@@ -22,9 +22,9 @@ function Main(props) {
 
     return (
         <>
-            <Menu opened={open} closeMenu={closeMenu} />
+            <Menu opened={open} closeMenu={closeMenu} email={props.email} />
             <Header link="Выйти" nameClass="header__registration-link_main" path="/sign-in">
-                <a className="header__registration-link header__registration-link_email">{`${props.email}`}</a>
+                <h1 className="header__registration-link header__registration-link_email">{`${props.email}`}</h1>
                 {open ? closeBurger : burger}
             </Header>
             <main className="main">
