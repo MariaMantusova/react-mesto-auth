@@ -29,7 +29,7 @@ function Login(props) {
             .then((res) => {
                 if (res.token) {
                     setData({email: '', password: ''})
-                    localStorage.setItem('token', res.token);
+                    localStorage.setItem('jwt', res.token);
                     props.authorize();
                     history.push("/main")
                 }
