@@ -28,9 +28,9 @@ function Login(props) {
         authApi.authorizeUser(data.password, data.email)
             .then((res) => {
                 if (res.token) {
+                    props.authorize(data.email);
                     setData({email: '', password: ''})
                     localStorage.setItem('jwt', res.token);
-                    props.authorize();
                     history.push("/main")
                 }
             })

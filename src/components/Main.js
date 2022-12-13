@@ -14,7 +14,7 @@ function Main(props) {
     return (
         <>
             <Header link="Выйти" nameClass="header__registration-link_main" path="/sign-in">
-                <a className="header__registration-link header__registration-link_email">email</a>
+                <a className="header__registration-link header__registration-link_email">{`${props.email}`}</a>
             </Header>
             <main className="main">
                 <section className="profile">

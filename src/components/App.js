@@ -49,8 +49,7 @@ function App() {
             authApi.validityCheck(jwt)
                 .then((res) => {
                     if (res) {
-                        setEmail(res.email);
-                        setAuthorized(true);
+                        handleAuthorized(res.data.email)
                         history.push("/main")
                     }
                 })
@@ -165,8 +164,9 @@ function App() {
             .catch((err) => console.log(err));
     }
 
-    function handleAuthorized() {
+    function handleAuthorized(email) {
         setAuthorized(true);
+        setEmail(email);
     }
 
     return (
@@ -188,6 +188,7 @@ function App() {
                                     cards={cards}
                                     onLike={handleCardLike}
                                     onDelete={handleCardDelete}
+                                    email={email}
                     />
                     <Route exact path="/">
                         {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
