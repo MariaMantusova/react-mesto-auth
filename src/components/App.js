@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Switch, Redirect } from 'react-router-dom';
+import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
 import Main from "./Main";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
@@ -15,6 +15,7 @@ import {authApi} from "../utils/authApi";
 import InfoTooltip from "./InfoTooltip";
 
 function App() {
+    const history = useHistory();
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
     const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -22,6 +23,7 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState({});
     const [cards, setCards] = React.useState([]);
     const [authorized, setAuthorized] = React.useState(false);
+    const [email, setEmail] = React.useState('');
 
     React.useEffect(() => {
         api.getUserInfo()
@@ -40,6 +42,25 @@ function App() {
             })
             .catch((err) => console.log(err))
     }, [])
+
+    function tokenCheck() {
+        if (localStorage.getItem('jwt')) {
+            let jwt = localStorage.getItem('jwt');
+            authApi.validityCheck(jwt)
+                .then((res) => {
+                    if (res) {
+                        setEmail(res.email);
+                        setAuthorized(true);
+                        history.push("/main")
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+
+    React.useEffect(() => {
+        tokenCheck();
+    },[])
 
     function handleCardLike(card, userInfo) {
         const isLiked = card.likes.some(i => i._id === userInfo._id)
