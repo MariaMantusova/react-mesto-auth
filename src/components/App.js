@@ -144,24 +144,29 @@ function App() {
             .catch((err) => console.log(err));
     }
 
+    function handleAuthorized() {
+        setAuthorized(true);
+    }
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="page">
                 <Switch>
                     <Route path="/sign-in">
-                        <Login/>
+                        <Login authorize={handleAuthorized}/>
                     </Route>
                     <Route path="/sign-up">
                         <Register/>
                     </Route>
                     <ProtectedRoute path="/main" authorized={authorized}
-                                    component={<Main onEditProfile={handleEditProfileClick}
-                                                     onAddPlace={handleAddPlaceClick}
-                                                     onEditAvatar={handleEditAvatarClick}
-                                                     onCardClick={handleCardClick}
-                                                     cards={cards}
-                                                     onLike={handleCardLike}
-                                                     onDelete={handleCardDelete}/>}
+                                    component={Main}
+                                    onEditProfile={handleEditProfileClick}
+                                    onAddPlace={handleAddPlaceClick}
+                                    onEditAvatar={handleEditAvatarClick}
+                                    onCardClick={handleCardClick}
+                                    cards={cards}
+                                    onLike={handleCardLike}
+                                    onDelete={handleCardDelete}
                     />
                     <Route exact path="/">
                         {authorized ? <Redirect to="/sign-in"/> : <Redirect to="/sign-up"/>}
