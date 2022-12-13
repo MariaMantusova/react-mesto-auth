@@ -26,16 +26,7 @@ function Login(props) {
         if (!data.password || !data.email) {
             return
         }
-        authApi.authorizeUser(data.password, data.email)
-            .then((res) => {
-                if (res.token) {
-                    props.authorize(data.email);
-                    setData({email: '', password: ''})
-                    localStorage.setItem('jwt', res.token);
-                    history.push("/main")
-                }
-            })
-            .catch((err) => console.log(err))
+        props.onLogin(data, setData);
     }
 
     return (

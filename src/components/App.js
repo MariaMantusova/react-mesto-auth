@@ -60,6 +60,21 @@ function App() {
         }
     }
 
+    function handleLogin(data, setData) {
+        authApi.authorizeUser(data.password, data.email)
+            .then((res) => {
+                if (res.token) {
+                    handleAuthorized(data.email)
+                    setData({email: '', password: ''})
+                    localStorage.setItem('jwt', res.token);
+                    history.push("/main")
+                }
+            })
+            .catch((err) => {
+                infoToolTipFailOpen(err);
+            })
+    }
+
     React.useEffect(() => {
         tokenCheck();
     },[])
@@ -70,9 +85,9 @@ function App() {
         setClassNameInfoTooltip("info-tooltip__image_success");
     }
 
-    function infoToolTipFailOpen() {
+    function infoToolTipFailOpen(err) {
         setIsOpenInfoTooltip(true);
-        setCaptionInfoTooltip("Что-то пошло не так! Попробуйте ещё раз.");
+        setCaptionInfoTooltip(err);
         setClassNameInfoTooltip("info-tooltip__image_fail");
     }
 
@@ -193,7 +208,7 @@ function App() {
             <div className="page">
                 <Switch>
                     <Route path="/sign-in">
-                        <Login authorize={handleAuthorized}/>
+                        <Login authorize={handleAuthorized} onLogin={handleLogin}/>
                     </Route>
                     <Route path="/sign-up">
                         <Register onError={infoToolTipFailOpen} onSuccess={infoToolTipSuccessOpen}/>
