@@ -5,3 +5,9 @@
     color: #A9A9A9;
     margin: 0;
 }
+
+@media screen and (max-width: 650px) {
+    .header__registration-link_main {
+        display: none;
+    }
+}

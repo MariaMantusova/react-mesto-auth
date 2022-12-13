@@ -3,9 +3,18 @@ import Card from "./Card";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import Header from "./Header";
 import Footer from "./Footer";
+import Menu from "./Menu";
+import {BiMenu} from "react-icons/bi";
+import {MdClose} from "react-icons/md";
 
 function Main(props) {
     const userInfo = React.useContext(CurrentUserContext);
+
+    const [open, setOpen] = React.useState(false);
+    const burger = <BiMenu onClick={() => { setOpen(!open) }} className="burger"/>
+    const closeBurger = <MdClose onClick={() => { setOpen(!open) }} className="burger"/>
+
+    const closeMenu = () => {setOpen(false)}
 
     function likedCard(card) {
         props.onLike(card, userInfo)
@@ -13,8 +22,10 @@ function Main(props) {
 
     return (
         <>
+            <Menu opened={open} closeMenu={closeMenu} />
             <Header link="Выйти" nameClass="header__registration-link_main" path="/sign-in">
                 <a className="header__registration-link header__registration-link_email">{`${props.email}`}</a>
+                {open ? closeBurger : burger}
             </Header>
             <main className="main">
                 <section className="profile">
