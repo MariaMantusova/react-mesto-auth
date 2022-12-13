@@ -28,7 +28,6 @@ function App() {
     const [captionInfoTooltip, setCaptionInfoTooltip] = React.useState('');
     const [classNameInfoTooltip, setClassNameInfoTooltip] = React.useState('');
 
-
     React.useEffect(() => {
         api.getUserInfo()
             .then((user) => {

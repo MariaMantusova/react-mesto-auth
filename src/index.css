@@ -53,7 +53,7 @@
 @import url(./blocks/signing/__link/_registration/signing__link_registration.css);
 @import url(./blocks/info-tooltip/info-tooltip.css);
 @import url(./blocks/info-tooltip-container/info-tooltip-container.css);
-@import url(./blocks/info-tooltip/_opened/info-tooltip_opened.css);
+@import url(blocks/info-tooltip-container/_opened/info-tooltip-container_opened.css);
 @import url(./blocks/info-tooltip/__image/info-tooltip__image.css);
 @import url(./blocks/info-tooltip/__image/_success/info-tooltip__image_success.css);
 @import url(./blocks/info-tooltip/__image/_fail/info-tooltip__image_fail.css);
