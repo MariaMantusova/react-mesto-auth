@@ -12,6 +12,7 @@ import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import {authApi} from "../utils/authApi";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
     const history = useHistory();
@@ -23,6 +24,10 @@ function App() {
     const [cards, setCards] = React.useState([]);
     const [authorized, setAuthorized] = React.useState(false);
     const [email, setEmail] = React.useState('');
+    const [isOpenInfoTooltip, setIsOpenInfoTooltip] = React.useState(false);
+    const [captionInfoTooltip, setCaptionInfoTooltip] = React.useState('');
+    const [classNameInfoTooltip, setClassNameInfoTooltip] = React.useState('');
+
 
     React.useEffect(() => {
         api.getUserInfo()
@@ -59,6 +64,22 @@ function App() {
     React.useEffect(() => {
         tokenCheck();
     },[])
+
+    function infoToolTipSuccessOpen() {
+        setIsOpenInfoTooltip(true);
+        setCaptionInfoTooltip("Вы успешно зарегистрировались!");
+        setClassNameInfoTooltip("info-tooltip__image_success");
+    }
+
+    function infoToolTipFailOpen() {
+        setIsOpenInfoTooltip(true);
+        setCaptionInfoTooltip("Что-то пошло не так! Попробуйте ещё раз.");
+        setClassNameInfoTooltip("info-tooltip__image_fail");
+    }
+
+    function closeInfoTooltip() {
+        setIsOpenInfoTooltip(false);
+    }
 
     function handleCardLike(card, userInfo) {
         const isLiked = card.likes.some(i => i._id === userInfo._id)
@@ -176,7 +197,7 @@ function App() {
                         <Login authorize={handleAuthorized}/>
                     </Route>
                     <Route path="/sign-up">
-                        <Register/>
+                        <Register onError={infoToolTipFailOpen} onSuccess={infoToolTipSuccessOpen}/>
                     </Route>
                     <ProtectedRoute path="/main" authorized={authorized}
                                     component={Main}
@@ -206,6 +227,9 @@ function App() {
 
                 <AddCardPopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}
                               onAddCard={handleAddCardSubmit}/>
+                <InfoTooltip isOpen={isOpenInfoTooltip} caption={captionInfoTooltip} className={classNameInfoTooltip}
+                             onClose={closeInfoTooltip}/>
+
             </div>
         </CurrentUserContext.Provider>
 

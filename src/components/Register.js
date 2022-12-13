@@ -4,12 +4,11 @@ import {Link, useHistory} from "react-router-dom";
 import {authApi} from "../utils/authApi";
 import InfoTooltip from "./InfoTooltip";
 
-function Register() {
+function Register(props) {
     const [data, setData] = React.useState({
         email: "",
         password: ""
     });
-
     const history = useHistory();
 
     function handleChange(evt) {
@@ -30,7 +29,8 @@ function Register() {
                     setData({
                         ...data
                     });
-                    history.push("/sign-in")
+                    props.onSuccess();
+                    history.push("/sign-in");
                 } else {
                     setData({
                         ...data
@@ -38,7 +38,9 @@ function Register() {
                 }
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err);
+                props.onError();
+                history.push("/sign-in");
             })
     }
 
