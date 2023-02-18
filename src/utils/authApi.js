@@ -14,7 +14,7 @@ class AuthApi {
             })
         })
             .then((res) => {
-                if (res.ok) {
+                if (res.ok || res.status === 409) {
                     return res.json();
                 } else {
                     return Promise.reject(new Error(res.status.toString()));
@@ -33,7 +33,7 @@ class AuthApi {
             })
         })
             .then((res) => {
-                if (res.ok) {
+                if (res.ok || res.status === 401) {
                     return res.json();
                 } else {
                     return Promise.reject(new Error(res.status.toString()));

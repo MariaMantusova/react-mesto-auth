@@ -1,14 +1,14 @@
 class Api {
     constructor(config) {
         this._url = config.url;
-        this._token = config.token;
+        this._token = '';
         this._header = config.headers;
     }
 
     getUserInfo() {
         return fetch(`${this._url}/users/me`, {
             headers: {
-                authorization: this._token
+                Authorization: this.getAuthHeader()
             }
         })
             .then((res) => {
@@ -24,7 +24,7 @@ class Api {
     getCards() {
         return fetch(`${this._url}/cards`, {
             headers: {
-                authorization: this._token
+                Authorization: this.getAuthHeader()
             }
         })
             .then((res) => {
@@ -40,7 +40,10 @@ class Api {
     changeUserInfo(name, about) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
-            headers: this._header,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthHeader()
+            },
             body: JSON.stringify({
                 name: name,
                 about: about
@@ -59,7 +62,10 @@ class Api {
     saveNewCard(name, link) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
-            headers: this._header,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthHeader()
+            },
             body: JSON.stringify({
                 name: name,
                 link: link
@@ -78,7 +84,10 @@ class Api {
     deleteCard(id) {
         return fetch(`${this._url}/cards/${id}`, {
             method: 'DELETE',
-            headers: this._header,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthHeader()
+            },
         })
             .then((res) => {
                 if (res.ok) {
@@ -93,7 +102,10 @@ class Api {
     addLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: 'PUT',
-            headers: this._header,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthHeader()
+            },
         })
             .then((res) => {
                 if (res.ok) {
@@ -108,7 +120,10 @@ class Api {
     deleteLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: 'DELETE',
-            headers: this._header,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthHeader()
+            },
         })
             .then((res) => {
                 if (res.ok) {
@@ -123,7 +138,10 @@ class Api {
     changeProfilePhoto(avatar) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
-            headers: this._header,
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: this.getAuthHeader()
+            },
             body: JSON.stringify({
                 avatar: avatar
             })
@@ -137,13 +155,22 @@ class Api {
             })
             .catch((err) => Promise.reject(err));
     }
+
+    getAuthHeader() {
+        if (this._token !== '') {
+            return `Bearer ${this._token}`
+        }
+        if (localStorage.getItem("jwt") !== '') {
+            this._token = localStorage.getItem("jwt")
+            return `Bearer ${this._token}`
+        }
+        return ''
+    }
 }
 
 const apiOption = {
-    url: 'https://nomoreparties.co/v1/cohort-52',
-    token: 'de7171b1-a6ca-4de6-b3e1-0107fb201661',
+    url: 'https://api.project.mymesto.nomoredomainsclub.ru',
     headers: {
-        authorization: 'de7171b1-a6ca-4de6-b3e1-0107fb201661',
         'Content-Type': 'application/json',
     },
 }

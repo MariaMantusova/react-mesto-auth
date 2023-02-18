@@ -31,7 +31,7 @@ function App() {
     React.useEffect(() => {
       authorized && api.getUserInfo()
             .then((user) => {
-                setCurrentUser(user);
+                setCurrentUser(user.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -69,9 +69,12 @@ function App() {
                     localStorage.setItem('jwt', res.token);
                     history.push("/main")
                 }
+                if (res.message) {
+                    infoToolTipFailOpen(res.message);
+                }
             })
             .catch((err) => {
-                infoToolTipFailOpen(err);
+                infoToolTipFailOpen(err.message);
             })
     }
 
@@ -84,6 +87,9 @@ function App() {
                     });
                     infoToolTipSuccessOpen();
                     history.push("/sign-in");
+                }
+                if (res.message) {
+                    infoToolTipFailOpen(res.message);
                 }
             })
             .catch((err) => {
@@ -112,7 +118,7 @@ function App() {
     }
 
     function handleCardLike(card, userInfo) {
-        const isLiked = card.likes.some(i => i._id === userInfo._id)
+        const isLiked = card.likes.some(i => i === userInfo._id)
 
         if (isLiked) {
             api.deleteLike(card._id)
@@ -188,7 +194,7 @@ function App() {
     function handleUpdateUser(name, description) {
         api.changeUserInfo(name, description)
             .then((userInfo) => {
-                setCurrentUser(userInfo);
+                setCurrentUser(userInfo.data);
                 closeAllPopups();
             })
             .catch((err) => console.log(err))
@@ -197,7 +203,7 @@ function App() {
     function handleUpdateAvatar(avatar) {
         api.changeProfilePhoto(avatar)
             .then((userInfo) => {
-                setCurrentUser(userInfo);
+                setCurrentUser(userInfo.data);
                 closeAllPopups();
             })
             .catch((err) => console.log(err))
@@ -206,8 +212,7 @@ function App() {
     function handleAddCardSubmit(name, link) {
         api.saveNewCard(name, link)
             .then((newCard) => {
-                newCard.name = name;
-                newCard.link = link;
+                newCard = newCard.data
                 setCards([newCard, ...cards]);
                 closeAllPopups();
             })
